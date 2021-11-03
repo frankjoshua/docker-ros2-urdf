@@ -77,4 +77,21 @@
     <origin xyz="${caster_xoff} 0.0 ${-(base_height/2)}" rpy="0 0 0"/>
   </joint>
 
+  <!-- Laser -->
+  <link name="laser_frame">
+    <visual>
+      <geometry>
+        <sphere radius="${(wheel_radius+wheel_zoff-(base_height/2))}"/>
+      </geometry>
+      <material name="Red">
+        <color rgba="1.0 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="laser_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_frame"/>
+    <origin xyz="0.0 0.0 ${(base_height-(wheel_radius+wheel_zoff-(base_height/2)))}" rpy="0 0 0"/>
+  </joint>
 </robot>
