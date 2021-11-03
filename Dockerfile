@@ -18,7 +18,6 @@ ARG WORKSPACE=/home/ros
 RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
 
 USER ros
-SHELL [ "/bin/bash", "-i", "-c" ]
 WORKDIR ${WORKSPACE}
 COPY src ./src/
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && colcon build
