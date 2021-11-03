@@ -1,4 +1,4 @@
-# ROS master in Docker [![](https://img.shields.io/docker/pulls/frankjoshua/ros2-master)](https://hub.docker.com/r/frankjoshua/ros2-master) [![CI](https://github.com/frankjoshua/docker-ros2-master/workflows/CI/badge.svg)](https://github.com/frankjoshua/docker-ros2-master/actions)
+# ROS master in Docker [![](https://img.shields.io/docker/pulls/frankjoshua/ros2-urdf)](https://hub.docker.com/r/frankjoshua/ros2-urdf) [![CI](https://github.com/frankjoshua/docker-ros2-urdf/workflows/CI/badge.svg)](https://github.com/frankjoshua/docker-ros2-urdf/actions)
 
 ## Description
 
@@ -11,7 +11,7 @@ This repo is mostly an example of how to build a multi architecture docker conta
 ```
 docker run -it \
     --network="host" \
-    frankjoshua/ros2-master
+    frankjoshua/ros2-urdf
 ```
 
 ## Building
@@ -21,7 +21,7 @@ Use [build.sh](build.sh) to build the docker containers.
 <br>Local builds are as follows:
 
 ```
-./build.sh -t frankjoshua/ros2-master -l
+./build.sh -t frankjoshua/ros2-urdf -l
 ```
 
 ## Template

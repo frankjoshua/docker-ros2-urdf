@@ -14,14 +14,13 @@ RUN apt-get update \
 ENV DEBIAN_FRONTEND=dialog
 
 # Set up auto-source of workspace for ros user
-ARG WORKSPACE
+ARG WORKSPACE=/home/ros
 RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
 
 USER ros
-# # nvidia-container-runtime
-# ENV NVIDIA_VISIBLE_DEVICES \
-#     ${NVIDIA_VISIBLE_DEVICES:-all}
-# ENV NVIDIA_DRIVER_CAPABILITIES \
-#     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+SHELL [ "/bin/bash", "-i", "-c" ]
+WORKDIR ${WORKSPACE}
+COPY src ./src/
+RUN . /opt/ros/$ROS_DISTRO/setup.sh && colcon build
 ENTRYPOINT [ "/bin/bash", "-i", "-c" ]
-CMD ["ros2 topic list"]
+CMD ["ros2 launch robot_description launch.py"]
