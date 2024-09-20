@@ -5,7 +5,7 @@ FROM frankjoshua/ros2
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
-   && apt-get -y install --no-install-recommends ros-galactic-xacro ros-galactic-joint-state-publisher \
+   && apt-get -y install --no-install-recommends ros-$ROS_DISTRO-xacro ros-$ROS_DISTRO-joint-state-publisher \
    #
    # Clean up
    && apt-get autoremove -y \
@@ -14,12 +14,11 @@ RUN apt-get update \
 ENV DEBIAN_FRONTEND=dialog
 
 # Set up auto-source of workspace for ros user
-ARG WORKSPACE=/home/ros
-RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
+WORKDIR /root
+COPY ros2_ws ./ros2_ws/
+RUN cd ros2_ws && . /opt/ros/$ROS_DISTRO/setup.sh && colcon build
 
-USER ros
-WORKDIR ${WORKSPACE}
-COPY src ./src/
-RUN . /opt/ros/$ROS_DISTRO/setup.sh && colcon build
-ENTRYPOINT [ "/bin/bash", "-i", "-c" ]
-CMD ["ros2 launch robot_description launch.py"]
+COPY ros_entrypoint.sh /ros_entrypoint.sh
+RUN chmod +x /ros_entrypoint.sh
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD [ "/bin/bash", "-i", "-c", "ros2 launch robot_description launch.py"]
