@@ -1,4 +1,4 @@
-# ROS master in Docker [![](https://img.shields.io/docker/pulls/frankjoshua/ros2-urdf)](https://hub.docker.com/r/frankjoshua/ros2-urdf) [![CI](https://github.com/frankjoshua/docker-ros2-urdf/workflows/CI/badge.svg)](https://github.com/frankjoshua/docker-ros2-urdf/actions)
+# Robot URDF publisher in Docker [![](https://img.shields.io/docker/pulls/frankjoshua/ros2-urdf)](https://hub.docker.com/r/frankjoshua/ros2-urdf) [![CI](https://github.com/frankjoshua/docker-ros2-urdf/workflows/CI/badge.svg)](https://github.com/frankjoshua/docker-ros2-urdf/actions)
 
 ## Description
 
@@ -6,7 +6,7 @@ Runs `robot_state_publisher` for the robomo.club robot: publishes the URDF on `/
 and the static `base_link`->sensor TF tree. Built on `ros:humble-ros-base`. Needs `--network=host`
 for ROS 2 DDS discovery.
 
-This repo is mostly an example of how to build a multi architecture docker container with ROS (Robotic Operating System). Github Actions is used to build 3 docker containers using `docker buildx` amd64 (x86 Desktop PC), arm64 (Jetson Nano) and arm32 (Raspberry Pi). This is for the purpose of developing locally on a work pc or laptop. Then being able to transfer your work to an embedded device with a high level of confidence of success.
+This repo is mostly an example of how to build a multi architecture docker container with ROS (Robotic Operating System). Github Actions is used to build multi-architecture images using `docker buildx` for amd64 (x86 Desktop PC) and arm64 (Jetson). This is for the purpose of developing locally on a work pc or laptop. Then being able to transfer your work to an embedded device with a high level of confidence of success.
 
 ## Example
 
